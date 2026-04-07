@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keranjang</title>
+<style>
+body{font-family:sans-serif;background:#fff0f5;margin:0}
+header{background:#ff6f91;color:white;padding:15px;text-align:center}
+li{animation:fade .5s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+<header><h1>🛒 Keranjang</h1></header>
+<ul id="list"></ul>
+<p>Total: Rp <span id="total"></span></p>
+<button onclick="back()">⬅ Kembali</button>
+<button onclick="checkout()">Checkout</button>
+
+<script>
+let cart=JSON.parse(localStorage.getItem('cart'))||[];
+let total=0;
+let list=document.getElementById('list');
+cart.forEach(i=>{
+let li=document.createElement('li');
+li.textContent=i.name+' - Rp '+i.price;
+list.appendChild(li);
+total+=i.price;
+});
+document.getElementById('total').textContent=total;
+
+function back(){window.location='index.html'}
+function checkout(){window.location='checkout.html'}
+</script>
+</body>
+</html>

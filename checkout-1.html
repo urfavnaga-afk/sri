@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+<style>
+body{font-family:sans-serif;background:#ffe4ec;margin:0}
+header{background:#ff6f91;color:white;padding:15px;text-align:center}
+input,select{display:block;width:90%;margin:10px auto;padding:10px;border-radius:10px}
+button{background:#ff6f91;color:white;border:none;padding:10px;border-radius:10px;display:block;margin:10px auto}
+</style>
+</head>
+<body>
+<header><h1>💳 Checkout</h1></header>
+
+<input placeholder="Nama Lengkap">
+<input placeholder="Alamat Lengkap">
+<input placeholder="No HP">
+
+<select>
+<option>Transfer Bank</option>
+<option>COD</option>
+<option>DANA</option>
+<option>OVO</option>
+</select>
+
+<button onclick="bayar()">Bayar</button>
+
+<script>
+function bayar(){
+alert('Pesanan berhasil! 🎉✨');
+localStorage.removeItem('cart');
+window.location='index.html';
+}
+</script>
+</body>
+</html>

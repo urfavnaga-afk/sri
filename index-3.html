@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skincare Pink Shop</title>
+<style>
+body{font-family:sans-serif;background:linear-gradient(#ffd6e7,#fff);margin:0}
+header{background:#ff6f91;color:white;padding:15px;text-align:center}
+.box{background:white;margin:15px;padding:15px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.1);animation:fade .6s}
+.product:hover{transform:scale(1.05)}
+button{background:#ff6f91;color:white;border:none;padding:10px;border-radius:10px;cursor:pointer;margin-top:5px}
+input{display:block;width:90%;margin:5px auto;padding:10px;border-radius:10px}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<header><h1>🌸 Skincare Pink Shop 🌸</h1></header>
+
+<div class="box" id="auth">
+<h3>Sign Up</h3>
+<input id="nama" placeholder="Nama Lengkap">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="signup()">Daftar</button>
+
+<h3>Sign In</h3>
+<input id="emailLogin" placeholder="Email">
+<input id="passwordLogin" type="password" placeholder="Password">
+<button onclick="signin()">Masuk</button>
+</div>
+
+<div id="produk" style="display:none">
+<div class="box product">
+<h3>Facial Wash</h3>
+<p>Rp 25.000</p>
+<button onclick="add('Facial Wash',25000)">Tambah</button>
+</div>
+
+<div class="box product">
+<h3>Toner</h3>
+<p>Rp 30.000</p>
+<button onclick="add('Toner',30000)">Tambah</button>
+</div>
+
+<div class="box product">
+<h3>Serum Glow</h3>
+<p>Rp 50.000</p>
+<button onclick="add('Serum Glow',50000)">Tambah</button>
+</div>
+
+<center><button onclick="goCart()">🛒 Keranjang</button></center>
+</div>
+
+<script>
+function signup(){
+let user={
+nama:document.getElementById('nama').value,
+email:document.getElementById('email').value,
+password:document.getElementById('password').value
+};
+if(user.nama==''||user.email==''||user.password==''){alert('Lengkapi data!');return}
+localStorage.setItem('user',JSON.stringify(user));
+alert('Berhasil daftar! Silakan login');
+}
+
+function signin(){
+let saved=JSON.parse(localStorage.getItem('user'));
+let email=document.getElementById('emailLogin').value;
+let pass=document.getElementById('passwordLogin').value;
+
+if(!saved || email!==saved.email || pass!==saved.password){
+alert('Login gagal!');
+return;
+}
+
+alert('Login berhasil!');
+document.getElementById('auth').style.display='none';
+document.getElementById('produk').style.display='block';
+}
+
+function add(name,price){
+let cart=JSON.parse(localStorage.getItem('cart'))||[];
+cart.push({name,price});
+localStorage.setItem('cart',JSON.stringify(cart));
+alert('Ditambahkan!');
+}
+
+function goCart(){window.location='cart.html'}
+</script>
+</body>
+</html>
